@@ -1,7 +1,7 @@
 Nama        : Darryl Nawawi
 NPM         : 2206083104
 Kelas       : PBP E
-Adaptable   : https://eurogolf.adaptable.app/
+Adaptable   : https://euro-golf.adaptable.app/main/
 
 ## Membuat sebuah proyek Django baru
 1. **Buat Direktori Khusus:**
@@ -35,14 +35,14 @@ Adaptable   : https://eurogolf.adaptable.app/
 
 7. **Jalankan Server Django:**
    - Kembali ke command prompt dan jalankan server dengan perintah `python manage.py runserver` (untuk Windows).
-   - Buka http://localhost:8000 di browser untuk memeriksa proyek Django Anda.
+   - Buka http://localhost:8000 di browser untuk memeriksa proyek Django yang sudah dibuat.
 
 8. **Menghentikan Server dan Menonaktifkan Lingkungan Virtual:**
    - Tekan `Ctrl+C` di command prompt untuk menghentikan server.
    - Nonaktifkan lingkungan virtual dengan perintah `deactivate`.
 
 9. **Push ke GitHub:**
-    - Terakhir, pastikan untuk melakukan push perubahan proyek Anda ke GitHub.
+    - Terakhir, pastikan untuk melakukan push perubahan proyek ke GitHub.
 
 ## Konfigurasi Routing Aplikasi Utama
 1. **Membuat Berkas Konfigurasi Routing:**
@@ -155,7 +155,7 @@ class Item(models.Model):
    - Tuliskan nama aplikasi yang Anda inginkan dan centang kotak "HTTP Listener on PORT", lalu klik tombol "Deploy App" untuk memulai proses deployment.
 
 ## Proses Request dan Respon pada Aplikasi Django
-<img width="557" alt="Screenshot 2023-09-12 at 17 33 15" src="https://github.com/SangMilyarder/Darryl_Euro_Golf/assets/119839024/6143575f-a3ea-429e-b21c-f4109a9b1959">
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf)
 
 Pada awalnya, pengguna atau klien akan mengirim permintaan (request) untuk mengakses sumber daya. Django kemudian akan memproses URL dari klien dan mencocokkannya dengan file `urls.py` (URL Mapping).
 
