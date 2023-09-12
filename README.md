@@ -155,7 +155,7 @@ class Item(models.Model):
    - Tuliskan nama aplikasi yang Anda inginkan dan centang kotak "HTTP Listener on PORT", lalu klik tombol "Deploy App" untuk memulai proses deployment.
 
 ## Proses Request dan Respon pada Aplikasi Django
-![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf)
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/main/PBP-Tugas2.png)
 
 Pada awalnya, pengguna atau klien akan mengirim permintaan (request) untuk mengakses sumber daya. Django kemudian akan memproses URL dari klien dan mencocokkannya dengan file `urls.py` (URL Mapping).
 
