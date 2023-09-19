@@ -300,7 +300,7 @@ Sumber:**Sumber**: [JSON](https://www.json.org/json-en.html)[MDN](https://develo
    ```
 
 2. **Menyesuaikan kode agar berkas base.html terdeteksi sebagai berkas template**
-   - Buka settings.py yang berada di subdirektori Euro_Golf dan perbaik baris TEMPLATES
+   - Buka settings.py yang berada di subdirektori Euro_Golf dan modifikasi baris TEMPLATES
    ```python
    ...
    TEMPLATES = [
@@ -315,7 +315,7 @@ Sumber:**Sumber**: [JSON](https://www.json.org/json-en.html)[MDN](https://develo
    ```
 
 3. **Mengubah kode pada main.html**
-   - main.html diubah untuk menggunakan base.html sebagai template utama
+   - Kode pada main.html diubah untuk menggunakan base.html sebagai template utama
    ```python
    {% extends 'base.html' %}
 
@@ -536,3 +536,16 @@ Sumber:**Sumber**: [JSON](https://www.json.org/json-en.html)[MDN](https://develo
 5. **untuk mengetes fungsi pengambilan data produk berdasarkan ID url dapat diubah menjadi http://localhost:8000/xml/[id] atau http://localhost:8000/json/[id]**
 
 ## Postman dengan Bentuk Data HTML
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/staging/HTML.png)
+
+## Postman dengan Bentuk Data XML
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/staging/XML.png)
+
+## Postman dengan Bentuk Data JSON
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/staging/JSON.png)
+
+## Postman dengan Bentuk Data XML by ID
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/staging/XML%20by%20ID.png)
+
+## Postman dengan Bentuk Data JSON by ID
+![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/staging/JSON%20by%20ID.png)
