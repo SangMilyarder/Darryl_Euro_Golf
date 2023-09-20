@@ -9,10 +9,12 @@ from main.models import Product
 # Create your views here.
 def show_main(request):
     products = Product.objects.all()
+    count_item = Product.objects.count()
     context = {
         'name': 'Darryl Nawawi',
         'class': 'PBP E', 
-        'products': products
+        'products': products,
+        'count_item': count_item
     }
     return render(request, "main.html", context)
 
