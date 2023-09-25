@@ -549,3 +549,23 @@ Sumber:**Sumber**: [JSON](https://www.json.org/json-en.html)[MDN](https://develo
 
 ## Postman dengan Bentuk Data JSON by ID
 ![DJango Framework](https://github.com/SangMilyarder/Darryl_Euro_Golf/blob/staging/JSON%20by%20ID.png)
+
+## Tugas 4
+
+## Pengertian Django UserCreationForm serta Kekurangan dan Kelebihannya
+
+Django UserCreationForm adalah salah satu fitur yang disediakan oleh Django. Form ini bertujuan untuk memungkinkan pengguna untuk mendaftar ke situs web atau aplikasi yang dibuat dengan mudah. Form ini dapat digunakan untuk pembuatan dan validasi data pengguna, termasuk username, password, dan informasi lain yang dibutuhkan saat mendaftar.
+
+**Kelebihan :**
+- Mudah Digunakan
+Penggunaan Django UserCreationForm mudah digunakan, pengguna dapat mengintegrasikannya ke dalam aplikasi Djangonya dengan cepat tanpa perlu menulis banyak kode.
+- Validasi Otomatis: Django UserCreationForm ini menyediakan validasi otomatis untuk berbagai hal seperti username dan password untuk membantu memastikan bahwa data yang dimasukkan oleh pengguna sesuai dengan aturan yang sudah ditentukan.
+- Integrasi yang Mudah: UserCreationForm dapat dengan mudah diintegrasikan sehingga mudah untuk mengelola data pengguna, seperti penyimpanan password yang aman dan otentikasi pengguna.
+- Kustomisasi: UserCreationForm dapat dikustomisasi sesuai dengan keperluan yang kita inginkan
+- Keamanan: Password user disimpan di database, sehingga memastikan keamanan data pengguna.
+
+**Kekurangan :**
+- Tampilan Default: Tampilan default UserCreationForm sangat sederhana sehingga memerlukan kustomisasi jika ingin terlihat menarik di mata user.
+- Fitur Terbatas: UserCreationForm memiliki fitur yang terbatas sehingga jika ingin lebih detail, penulisan kode diperlukan.
+- Bahasa Bawaan: Default dari Django UserCreationForm adalah bahasa inggris sehingga jika ingin menggunakan bahasa lain, penyesuaian program diperlukan.
+- Validasi Email: UserCreationForm tidak memvalidasi apakah alamat email yang dimasukkan oleh user valid atau tidak sehingga diperlukan validasi tambahan jika diperlukan.

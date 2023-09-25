@@ -39,6 +39,18 @@ def create_product(request):
     context = {'form': form}
     return render(request, "create_product.html", context)
 
+def update_stock(request, product_id):
+    product = Product.objects.get(id=product_id)
+    action = request.POST.get('action')
+
+    if action == 'add':
+        product.amount += 1
+    elif action == 'subtract' and product.amount > 0:
+        product.amount -= 1
+
+    product.save()
+    return redirect('main:show_main')
+
 def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")

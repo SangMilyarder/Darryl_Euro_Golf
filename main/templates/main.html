@@ -1,78 +1,65 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html>
-    <head>
-    <style type="text/css">
-        .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-        overflow:hidden;padding:10px 5px;word-break:normal;}
-        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-        .tg .tg-ps66{font-size:11px;text-align:left;vertical-align:top}
-        .tg .tg-0lax{text-align:center;vertical-align:top}
-        h1 {
-            font-size:big; color: rgb(0, 34, 128);
-            text-align: center;
-        }
-        h5 {
-            font-size:medium; color: darkgreen;
-            text-align: center;
-        }
-        </style>
-        </head>
-        <body>
-            <h1>Euro Golf</h1>
-            <h5>Name: {{ name }}</h5>
-            <h5>Class: {{ class }}</h5>
-            <h5>Total item yang dimasukkan: {{ count_item }}</h5>
-        <table class="tg">
-            <thead>
-                <tr>
-                    <th class="tg-0lax">Name</th>
-                    <th class="tg-0lax">Image</th>
-                    <th class="tg-0lax">Price</th>
-                    <th class="tg-0lax">Amount</th>
-                    <th class="tg-0lax">Category</th>
-                    <th class="tg-0lax">Description</th>
-                    <th class="tg-0lax">Date Added</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                <tr>
-                    <td class="tg-0lax">{{ product.name }}</td>
-                    <td class="tg-0lax"><img src="{{ product.image }}" width="150" height="108" /></td>
-                    <td class="tg-0lax">{{ product.price }}</td>
-                    <td class="tg-0lax">{{ product.amount }}</td>
-                    <td class="tg-0lax">{{ product.category }}</td>
-                    <td class="tg-0lax">{{ product.description }}</td>
-                    <td class="tg-0lax">{{ product.date_added }}</td>
+    <h1>Euro Golf</h1>
+    <h5>Name: {{ name }}</h5>
+    <h5>Class: {{ class }}</h5>
+    <h5>Total item yang dimasukkan: {{ count_item }}</h5>
+    <table class="tg">
+        <thead>
+            <tr>
+                <th class="tg-0lax">Name</th>
+                <th class="tg-0lax">Image</th>
+                <th class="tg-0lax">Price</th>
+                <th class="tg-0lax">Amount</th>
+                <th class="tg-0lax">Category</th>
+                <th class="tg-0lax">Description</th>
+                <th class="tg-0lax">Date Added</th>
+                <th class="tg-0lax">Delete Product</th>
+                <th class="tg-0lax">Add/Sub</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td class="tg-0lax">{{ product.name }}</td>
+                <td class="tg-0lax"><img src="{{ product.image }}" width="150" height="108" /></td>
+                <td class="tg-0lax">{{ product.price }}</td>
+                <td class="tg-0lax">{{ product.amount }}</td>
+                <td class="tg-0lax">{{ product.category }}</td>
+                <td class="tg-0lax">{{ product.description }}</td>
+                <td class="tg-0lax">{{ product.date_added }}</td>
+                <div style="text-align:center;">
                     <td>
                         <a href="{% url 'main:delete_product' product.id %}">Delete</a>
                     </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-            </table>
-        <a href="{% url 'main:create_product' %}">
-            <button>
-                Add New Product
-            </button>
-        </a>
+                </div>
+                <td>
+                    <form method="POST" action="{% url 'main:update_stock' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" name="action" value="add">ADD</button>
+                        <button type="submit" name="action" value="subtract">SUB</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
 
-        <a href="{% url 'main:logout' %}">
-            <button>
-                Logout
-            </button>
-        </a>
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
 
-        <h5>Sesi terakhir login: {{ last_login }}</h5>
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-        <marquee behavior="scroll" direction="right" style= "color: blue">
-            Welcome to Euro Golf! 
-        </marquee>
-    </body>
-    </html>
+    <marquee behavior="scroll" direction="right" style= "color: blue">
+        Welcome to Euro Golf! 
+    </marquee>
 {% endblock content %}
