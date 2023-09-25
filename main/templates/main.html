@@ -61,6 +61,15 @@
                 Add New Product
             </button>
         </a>
+
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
+
         <marquee behavior="scroll" direction="right" style= "color: blue">
             Welcome to Euro Golf! 
         </marquee>
