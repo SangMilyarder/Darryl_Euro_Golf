@@ -37,8 +37,8 @@
                 <td>
                     <form method="POST" action="{% url 'main:update_stock' product.id %}">
                         {% csrf_token %}
-                        <button type="submit" name="action" value="add">ADD</button>
-                        <button type="submit" name="action" value="subtract">SUB</button>
+                        <button type="submit" name="action" value="add">+</button>
+                        <button type="submit" name="action" value="subtract">-</button>
                     </form>
                 </td>
             </tr>
