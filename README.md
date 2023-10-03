@@ -942,3 +942,280 @@ Penggunaan cookies dalam pengembangan web aman jika diimplementasikan secara ben
 
 8. **Lakukan python manage.py migrate untuk mengaplikasikan migrasi yang sudah dilakukan sebelumnya**
 
+## Tugas 5
+
+# Manfaat dari setiap element selector dan waktu yang tepat untuk menggunakannya
+
+Berikut adalah panduan penggunaan selector dalam CSS beserta manfaat dan waktu yang tepat untuk menggunakannya.
+
+## 1. Selector Universal (`*`)
+
+**Manfaat:**
+- Memilih semua elemen pada halaman
+- Untuk mengatur gaya default pada seluruh elemen
+
+**Kapan Menggunakannya:**
+- Penggunaan selector universal dapat mempengaruhi semua elemen di halaman sehingga harus hati-hati dalam penggunaannya.
+- Bisa digunakan untuk mengatur margin dan padding secara global.
+
+**Contoh Penggunaan:**
+```css
+* {
+    margin: 0;
+    padding: 0;
+}
+```
+
+## 2. Selector Elemen (Tag)
+
+**Manfaat:**
+- Memilih semua elemen dengan tag yang sesuai.
+- Untuk mengganti gaya elemen-elemen yang memiliki tag yang sama.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengubah gaya elemen HTML dengan tag tertentu.
+
+**Contoh Penggunaan:**
+```css
+p {
+    font-size: 16px;
+}
+```
+
+## 3. Selector Kelas (.kelas)
+
+**Manfaat:**
+- Memilih elemen-elemen dengan atribut class tertentu.
+- Dapat digunakan untuk elemen dengan kelas yang sama di berbagai bagian halaman.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen dengan kelas tertentu.
+
+**Contoh Penggunaan:**
+```css
+.button {
+    background-color: #007bff;
+    color: #fff;
+}
+```
+
+## 4. Selector ID (#id)
+
+**Manfaat:**
+- Memilih elemen dengan atribut id tertentu.
+- Harus unik di seluruh halaman.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengubah gaya elemen yang memiliki ID tertentu.
+
+**Contoh Penggunaan:**
+```css
+#header {
+    font-size: 24px;
+}
+```
+
+## 5. Selector Attribute
+
+**Manfaat:**
+- Memilih elemen dengan atribut tertentu.
+- Pemilihan elemen dengan nilai atribut tertentu.
+- Pemilihan elemen dengan atribut spesifik.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen dengan nilai atribut tertentu.
+
+**Contoh Penggunaan:**
+```css
+a[href^="http"] {
+    color: #FF0000;
+}
+```
+
+## 6. Selector Pseudo-Class (:pseudo-class)
+
+**Manfaat:**
+- Memilih elemen berdasarkan keadaan atau interaksi user.
+- Berguna untuk mengubah gaya elemen saat hover atau saat berada dalam keadaan tertentu.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen berdasarkan interaksi pengguna.
+
+**Contoh Penggunaan:**
+```css
+a:hover {
+    color: #ff0000;
+}
+```
+
+## 7. Selector Pseudo-Element (::pseudo-element)
+
+**Manfaat:**
+- Memilih bagian spesifik dari elemen.
+- Digunakan untuk mengubah gaya elemen seperti teks yang pertama atau elemen yang terakhir.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen tertentu dalam elemen lain.
+
+**Contoh Penggunaan:**
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+**Sumber**: [petanikode](https://www.petanikode.com/css-selektor/)
+
+## Tag HTML5
+
+**1. <header>**
+Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas sebuah halaman atau bagian dari halaman. Biasanya berisi judul, logo, dan elemen-elemen navigasi.
+
+```html
+<header>
+    <h1>Halaman Utama</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+    </nav>
+</header>
+```
+
+**2. <nav>**
+Mengelompokkan elemen-elemen yang berisi menu navigasi atau tautan ke halaman-halaman terkait.
+
+```html
+<nav>
+    <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Produk</a></li>
+        <li><a href="#">Kontak</a></li>
+    </ul>
+</nav>
+```
+
+**3. <main>**
+Digunakan untuk mengelompokkan konten utama dari sebuah halaman web. Biasanya hanya ada satu elemen <main> dalam satu halaman.
+
+```html
+<main>
+    <h1>Selamat Datang di Blog Kami</h1>
+    <p>Ini adalah artikel terbaru kami...</p>
+</main>
+```
+
+**4. <article>**
+Mengelompokkan konten yang berdiri sendiri dan dapat berdiri sendiri, seperti artikel berita atau posting blog.
+
+```html
+<article>
+    <h2>10 Tips untuk Mengoptimalkan Performa Website</h2>
+    <p>Di dalam artikel ini, kami akan berbagi tips...</p>
+</article>
+```
+
+**5. <section>**
+Mengelompokkan konten terkait dalam sebuah halaman. Bisa digunakan untuk membuat bagian-bagian dalam artikel atau halaman.
+
+```html
+<section>
+    <h2>Bagian 1</h2>
+    <p>Ini adalah bagian pertama dari artikel kami...</p>
+</section>
+<section>
+    <h2>Bagian 2</h2>
+    <p>Ini adalah bagian kedua dari artikel kami...</p>
+</section>
+```
+
+**6. <aside>**
+Digunakan untuk mengelompokkan konten sampingan yang terkait dengan konten utama. Biasanya digunakan untuk sidebar atau iklan.
+
+```html
+<aside>
+    <h3>Artikel Terpopuler</h3>
+    <ul>
+        <li><a href="#">10 Tips SEO</a></li>
+        <li><a href="#">Cara Membuat Website</a></li>
+    </ul>
+</aside>
+```
+
+**7. <footer>**
+Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian bawah halaman atau bagian dari halaman. Biasanya berisi informasi hak cipta, tautan-tautan sosial, atau informasi kontak.
+
+```html
+<footer>
+    <p>&copy; 2023 Nama Perusahaan. Hak Cipta Dilindungi.</p>
+    <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+    </ul>
+</footer>
+```
+
+## Perbedaan Antara Margin dan Padding dalam CSS
+
+**Margin**
+- margin adalah ruang di sekitar elemen, yaitu ruang antara elemen dengan elemen lain di sekitarnya.
+- margin tidak memiliki latar belakang dan tidak berpengaruh pada tampilan elemen tersebut.
+- margin digunakan untuk mengatur jarak antara elemen dengan elemen lain di sekitarnya, sehingga memengaruhi tata letak keseluruhan halaman.
+- Mengubah margin akan memengaruhi elemen bersangkutan dan elemen lain di sekitarnya.
+
+**Contoh penggunaan margin:**
+```css
+div {
+    margin: 10px;
+}
+```
+
+**Padding**
+- Padding adalah ruang di dalam elemen, yaitu ruang antara konten elemen dan batas elemen tersebut.
+- Padding dapat memiliki latar belakang dan berpengaruh pada tampilan elemen tersebut.
+- Padding digunakan untuk mengatur jarak antara konten elemen dan batas elemen tersebut, sehingga memengaruhi tampilan elemen itu sendiri.
+- Mengubah padding hanya akan memengaruhi elemen bersangkutan, tanpa memengaruhi elemen lain di sekitarnya.
+
+**Contoh penggunaan padding:**
+```css
+div {
+    padding: 10px;
+}
+```
+
+## Perbedaan Antara Framework CSS Tailwind dan Bootstrap
+
+**1. Pengertian:**
+- CSS Tailwind adalah framework "utility-first," yang berfokus pada penggunaan kelas CSS yang dapat digunakan secara langsung dalam HTML untuk membangun tampilan. Hal ini memberikan fleksibilitas tinggi tetapi memerlukan lebih banyak penulisan kode HTML.
+- Bootstrap adalah framework "component-first," yang berfokus pada komponen siap pakai yang dapat dengan mudah dimasukkan ke dalam proyek. Hal ini menghasilkan kode HTML yang lebih bersih tetapi mungkin memiliki sedikit kurang fleksibilitas.
+
+**2. Penggunaan Kelas CSS:**
+CSS Tailwind:\
+- Memerlukan penggunaan banyak kelas CSS dalam HTML untuk mengatur tampilan elemen. Hal ini memungkinkan tingkat kustomisasi tinggi tetapi dapat membuat markup HTML menjadi besar dan sulit dibaca.
+
+Bootstrap:\
+- Menggunakan lebih sedikit kelas CSS dalam HTML karena komponennya sudah memiliki kelas-kelas yang telah ditentukan. Hal ini menghasilkan markup yang lebih bersih tetapi mungkin kurang fleksibel.
+
+**3. Tingkat Kustomisasi:**
+CSS Tailwind:\
+- Memberikan tingkat kustomisasi yang sangat tinggi. Anda dapat menyesuaikan setiap detail tampilan dengan mengedit konfigurasi atau menambahkan kelas tambahan sesuai kebutuhan.
+Bootstrap:\
+- Lebih mudah digunakan untuk membangun situs web dengan tampilan yang konsisten karena komponennya sudah dibuat sebelumnya. Kustomisasi komponen Bootstrap mungkin memerlukan lebih banyak pekerjaan daripada Tailwind.
+
+**4. Ukuran File:**
+Tailwind CSS:\
+- File CSS lebih besar karena menghasilkan banyak kelas yang harus di-render oleh browser.
+Bootstrap:\
+- File CSS lebih kecil karena hanya memuat komponen yang digunakan dalam proyek.
+
+**Kapan Sebaiknya Menggunakan Bootstrap daripada Tailwind, dan Sebaliknya?**
+**Gunakan Bootstrap Ketika:**
+- Ingin mengembangkan proyek dengan cepat dan memerlukan komponen siap pakai yang dapat disesuaikan serta menginginkan tampilan yang konsisten dan memiliki desain yang sudah dirancang dengan baik.
+- Tidak ingin terlalu banyak menulis kode HTML dan CSS kustom.
+
+**Gunakan Tailwind CSS Ketika:**
+- Ingin tingkat kustomisasi yang sangat tinggi untuk tampilan program.
+- Suka mengontrol setiap detail tampilan program melalui kelas-kelas CSS.
+- Ingin menghindari file CSS yang besar dan hanya menghasilkan kode CSS yang dibutuhkan.
