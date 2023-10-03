@@ -1,10 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Euro Golf</h1>
-    <h5>Name: {{ name }}</h5>
-    <h5>Class: {{ class }}</h5>
-    <h5>Total item yang dimasukkan: {{ count_item }}</h5>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Euro Golf</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+            </li>
+            <li class="new_product">
+                <a class="nav-link" href="{% url 'main:create_product' %}">Add New Product</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Info
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:pricelist' %}">Pricelist</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'main:steel_view' %}">Steel Shaft</a></li>
+                    <li><a class="dropdown-item" href="{% url 'main:graphite_view' %}">Graphite Shaft</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+            </li>
+            </ul>
+            <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
     <table class="tg">
         <thead>
             <tr>
@@ -15,8 +47,9 @@
                 <th class="tg-0lax">Category</th>
                 <th class="tg-0lax">Description</th>
                 <th class="tg-0lax">Date Added</th>
-                <th class="tg-0lax">Delete Product</th>
                 <th class="tg-0lax">Add/Sub</th>
+                <th class="tg-0lax">Edit</th>
+                <th class="tg-0lax">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +62,6 @@
                 <td class="tg-0lax">{{ product.category }}</td>
                 <td class="tg-0lax">{{ product.description }}</td>
                 <td class="tg-0lax">{{ product.date_added }}</td>
-                <div style="text-align:center;">
-                    <td>
-                        <a href="{% url 'main:delete_product' product.id %}">Delete</a>
-                    </td>
-                </div>
                 <td>
                     <form method="POST" action="{% url 'main:update_stock' product.id %}">
                         {% csrf_token %}
@@ -41,23 +69,37 @@
                         <button type="submit" name="action" value="subtract">-</button>
                     </form>
                 </td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                </td>
+                <div style="text-align:center;">
+                    <td>
+                        <a href="{% url 'main:delete_product' product.id %}">
+                            <button>
+                                Delete
+                            </button>
+                        </a>
+                    </td>
+                </div>
             </tr>
             {% endfor %}
         </tbody>
         </table>
-    <a href="{% url 'main:create_product' %}">
-        <button>
-            Add New Product
-        </button>
-    </a>
+    </br>
+    <div class ="info_login">
+        <h7>Total item yang dimasukkan: {{ count_item }}</h7>
+        </br>
+        <h7>Sesi terakhir login: {{ last_login }}</h7>
+    </div>
 
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
+    <div class ="profile">
+        <h5>Name: {{ name }}</h5>
+        <h5>Class: {{ class }}</h5>
+    </div>
 
     <marquee behavior="scroll" direction="right" style= "color: blue">
         Welcome to Euro Golf! 

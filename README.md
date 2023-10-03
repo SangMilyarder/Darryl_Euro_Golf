@@ -942,3 +942,565 @@ Penggunaan cookies dalam pengembangan web aman jika diimplementasikan secara ben
 
 8. **Lakukan python manage.py migrate untuk mengaplikasikan migrasi yang sudah dilakukan sebelumnya**
 
+## Tugas 5
+
+# Manfaat dari setiap element selector dan waktu yang tepat untuk menggunakannya
+
+## 1. Selector Universal (`*`)
+
+**Manfaat:**
+- Memilih semua elemen pada halaman
+- Untuk mengatur gaya default pada seluruh elemen
+
+**Kapan Menggunakannya:**
+- Penggunaan selector universal dapat mempengaruhi semua elemen di halaman sehingga harus hati-hati dalam penggunaannya.
+- Bisa digunakan untuk mengatur margin dan padding secara global.
+
+**Contoh Penggunaan:**
+```css
+* {
+    margin: 0;
+    padding: 0;
+}
+```
+
+## 2. Selector Elemen (Tag)
+
+**Manfaat:**
+- Memilih semua elemen dengan tag yang sesuai.
+- Untuk mengganti gaya elemen-elemen yang memiliki tag yang sama.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengubah gaya elemen HTML dengan tag tertentu.
+
+**Contoh Penggunaan:**
+```css
+p {
+    font-size: 16px;
+}
+```
+
+## 3. Selector Kelas (.kelas)
+
+**Manfaat:**
+- Memilih elemen-elemen dengan atribut class tertentu.
+- Dapat digunakan untuk elemen dengan kelas yang sama di berbagai bagian halaman.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen dengan kelas tertentu.
+
+**Contoh Penggunaan:**
+```css
+.button {
+    background-color: #007bff;
+    color: #fff;
+}
+```
+
+## 4. Selector ID (#id)
+
+**Manfaat:**
+- Memilih elemen dengan atribut id tertentu.
+- Harus unik di seluruh halaman.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengubah gaya elemen yang memiliki ID tertentu.
+
+**Contoh Penggunaan:**
+```css
+#header {
+    font-size: 24px;
+}
+```
+
+## 5. Selector Attribute
+
+**Manfaat:**
+- Memilih elemen dengan atribut tertentu.
+- Pemilihan elemen dengan nilai atribut tertentu.
+- Pemilihan elemen dengan atribut spesifik.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen dengan nilai atribut tertentu.
+
+**Contoh Penggunaan:**
+```css
+a[href^="http"] {
+    color: #FF0000;
+}
+```
+
+## 6. Selector Pseudo-Class (:pseudo-class)
+
+**Manfaat:**
+- Memilih elemen berdasarkan keadaan atau interaksi user.
+- Berguna untuk mengubah gaya elemen saat hover atau saat berada dalam keadaan tertentu.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen berdasarkan interaksi pengguna.
+
+**Contoh Penggunaan:**
+```css
+a:hover {
+    color: #ff0000;
+}
+```
+
+## 7. Selector Pseudo-Element (::pseudo-element)
+
+**Manfaat:**
+- Memilih bagian spesifik dari elemen.
+- Digunakan untuk mengubah gaya elemen seperti teks yang pertama atau elemen yang terakhir.
+
+**Kapan Menggunakannya:**
+- Ketika ingin mengganti gaya elemen tertentu dalam elemen lain.
+
+**Contoh Penggunaan:**
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+**Sumber**: [petanikode](https://www.petanikode.com/css-selektor/)
+
+## Tag HTML5
+
+**1. header**
+
+Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas sebuah halaman atau bagian dari halaman. Biasanya berisi judul, logo, dan elemen-elemen navigasi.
+
+```html
+<header>
+    <h1>Halaman Utama</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+    </nav>
+</header>
+```
+
+**2. nav**
+
+Mengelompokkan elemen-elemen yang berisi menu navigasi atau tautan ke halaman-halaman terkait.
+
+```html
+<nav>
+    <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Produk</a></li>
+        <li><a href="#">Kontak</a></li>
+    </ul>
+</nav>
+```
+
+**3. main**
+
+Digunakan untuk mengelompokkan konten utama dari sebuah halaman web. Biasanya hanya ada satu elemen <main> dalam satu halaman.
+
+```html
+<main>
+    <h1>Selamat Datang di Blog Kami</h1>
+    <p>Ini adalah artikel terbaru kami...</p>
+</main>
+```
+
+**4. article**
+
+Mengelompokkan konten yang berdiri sendiri dan dapat berdiri sendiri, seperti artikel berita atau posting blog.
+
+```html
+<article>
+    <h2>10 Tips untuk Mengoptimalkan Performa Website</h2>
+    <p>Di dalam artikel ini, kami akan berbagi tips...</p>
+</article>
+```
+
+**5. section**
+
+Mengelompokkan konten terkait dalam sebuah halaman. Bisa digunakan untuk membuat bagian-bagian dalam artikel atau halaman.
+
+```html
+<section>
+    <h2>Bagian 1</h2>
+    <p>Ini adalah bagian pertama dari artikel kami...</p>
+</section>
+<section>
+    <h2>Bagian 2</h2>
+    <p>Ini adalah bagian kedua dari artikel kami...</p>
+</section>
+```
+
+**6. aside**
+
+Digunakan untuk mengelompokkan konten sampingan yang terkait dengan konten utama. Biasanya digunakan untuk sidebar atau iklan.
+
+```html
+<aside>
+    <h3>Artikel Terpopuler</h3>
+    <ul>
+        <li><a href="#">10 Tips SEO</a></li>
+        <li><a href="#">Cara Membuat Website</a></li>
+    </ul>
+</aside>
+```
+
+**7. footer**
+
+Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian bawah halaman atau bagian dari halaman. Biasanya berisi informasi hak cipta, tautan-tautan sosial, atau informasi kontak.
+
+```html
+<footer>
+    <p>&copy; 2023 Nama Perusahaan. Hak Cipta Dilindungi.</p>
+    <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+    </ul>
+</footer>
+```
+
+## Perbedaan Antara Margin dan Padding dalam CSS
+
+**Margin**
+- margin adalah ruang di sekitar elemen, yaitu ruang antara elemen dengan elemen lain di sekitarnya.
+- margin tidak memiliki latar belakang dan tidak berpengaruh pada tampilan elemen tersebut.
+- margin digunakan untuk mengatur jarak antara elemen dengan elemen lain di sekitarnya, sehingga memengaruhi tata letak keseluruhan halaman.
+- Mengubah margin akan memengaruhi elemen bersangkutan dan elemen lain di sekitarnya.
+
+**Contoh penggunaan margin:**
+```css
+div {
+    margin: 10px;
+}
+```
+
+**Padding**
+- Padding adalah ruang di dalam elemen, yaitu ruang antara konten elemen dan batas elemen tersebut.
+- Padding dapat memiliki latar belakang dan berpengaruh pada tampilan elemen tersebut.
+- Padding digunakan untuk mengatur jarak antara konten elemen dan batas elemen tersebut, sehingga memengaruhi tampilan elemen itu sendiri.
+- Mengubah padding hanya akan memengaruhi elemen bersangkutan, tanpa memengaruhi elemen lain di sekitarnya.
+
+**Contoh penggunaan padding:**
+```css
+div {
+    padding: 10px;
+}
+```
+
+## Perbedaan Antara Framework CSS Tailwind dan Bootstrap
+
+**1. Pengertian:**
+
+- CSS Tailwind adalah framework "utility-first," yang berfokus pada penggunaan kelas CSS yang dapat digunakan secara langsung dalam HTML untuk membangun tampilan. Hal ini memberikan fleksibilitas tinggi tetapi memerlukan lebih banyak penulisan kode HTML.
+
+- Bootstrap adalah framework "component-first," yang berfokus pada komponen siap pakai yang dapat dengan mudah dimasukkan ke dalam proyek. Hal ini menghasilkan kode HTML yang lebih bersih tetapi mungkin memiliki sedikit kurang fleksibilitas.
+
+**2. Penggunaan Kelas CSS:**
+
+CSS Tailwind:
+- Memerlukan penggunaan banyak kelas CSS dalam HTML untuk mengatur tampilan elemen. Hal ini memungkinkan tingkat kustomisasi tinggi tetapi dapat membuat markup HTML menjadi besar dan sulit dibaca.
+
+Bootstrap:
+- Menggunakan lebih sedikit kelas CSS dalam HTML karena komponennya sudah memiliki kelas-kelas yang telah ditentukan. Hal ini menghasilkan markup yang lebih bersih tetapi mungkin kurang fleksibel.
+
+**3. Tingkat Kustomisasi:**
+
+CSS Tailwind:
+- Memberikan tingkat kustomisasi yang sangat tinggi. Anda dapat menyesuaikan setiap detail tampilan dengan mengedit konfigurasi atau menambahkan kelas tambahan sesuai kebutuhan.
+
+Bootstrap:
+- Lebih mudah digunakan untuk membangun situs web dengan tampilan yang konsisten karena komponennya sudah dibuat sebelumnya. Kustomisasi komponen Bootstrap mungkin memerlukan lebih banyak pekerjaan daripada Tailwind.
+
+**4. Ukuran File:**
+
+Tailwind CSS:
+- File CSS lebih besar karena menghasilkan banyak kelas yang harus di-render oleh browser.
+
+Bootstrap:
+- File CSS lebih kecil karena hanya memuat komponen yang digunakan dalam proyek.
+
+## Kapan Sebaiknya Menggunakan Bootstrap daripada Tailwind, dan Sebaliknya?
+
+**Gunakan Bootstrap Ketika:**
+- Ingin mengembangkan proyek dengan cepat dan memerlukan komponen siap pakai yang dapat disesuaikan serta menginginkan tampilan yang konsisten dan memiliki desain yang sudah dirancang dengan baik.
+- Tidak ingin terlalu banyak menulis kode HTML dan CSS kustom.
+
+**Gunakan Tailwind CSS Ketika:**
+- Ingin tingkat kustomisasi yang sangat tinggi untuk tampilan program.
+- Suka mengontrol setiap detail tampilan program melalui kelas-kelas CSS.
+- Ingin menghindari file CSS yang besar dan hanya menghasilkan kode CSS yang dibutuhkan.
+
+## Langkah mengimplementasikan checklist secara step-by-step
+
+## Menambahkan Bootstrap ke Aplikasi
+
+1. **Memodifikasi file base.html**
+   - Buka file base.html kemudian tambahkan tag <meta name="viewport"> agar halaman web dapat menyesuaikan ukuran dan perilaku perangkat mobile
+   ```html
+   <head>
+    {% block meta %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+   </head>
+   ```
+
+2. **Tambahkan kembali di dalam base.html**
+   - Tambahkan Bootstrap CSS dan juga JS
+   CSS:
+
+   ```html
+   <head>
+    {% block meta %}
+        ...
+    {% endblock meta %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   </head>
+   ```
+   JS:
+
+   ```html
+   <head>
+    ...
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+   </head>
+   ```
+
+3. **Menambah kembali script JS**
+   - Menambahkan kembali untuk menggunakan dropdowns, popover, tooltips yang disediakan framework Bootstrap
+   ```html
+   <head>
+    ...
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+   </head>
+   ```
+
+## Menambahkan navbar pada Aplikasi
+
+1. **Buka file main.html yang ada di templates**
+   - Masukkan kode ini untuk menginisiasi navbar
+   ```html
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Euro Golf</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+            </li>
+            <li class="new_product">
+                <a class="nav-link" href="{% url 'main:create_product' %}">Add New Product</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Info
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:pricelist' %}">Pricelist</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'main:steel_view' %}">Steel Shaft</a></li>
+                    <li><a class="dropdown-item" href="{% url 'main:graphite_view' %}">Graphite Shaft</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+            </li>
+            </ul>
+            <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
+    ```
+   
+2. **Modifikasi kembali kode tersebut**
+   - Modifikasi kode tersebut jika ingin menambahkan fitur pada navbar
+
+## Menambahkan Fitur Edit pada Aplikasi
+
+1. **Membuat fungsi baru bernama edit_product**
+   - Buka file views.py yang ada di subdirektori main. Buatlah fungsi baru bernama edit_product yang menerima parameter request dan id
+   ```python
+   def edit_product(request, id):
+      # Get product berdasarkan ID
+      product = Product.objects.get(pk = id)
+
+      # Set product sebagai instance dari form
+      form = ProductForm(request.POST or None, instance=product)
+
+      if form.is_valid() and request.method == "POST":
+         # Simpan form dan kembali ke halaman awal
+         form.save()
+         return HttpResponseRedirect(reverse('main:show_main'))
+
+      context = {'form': form}
+      return render(request, "edit_product.html", context)
+    ```
+
+2. **Buatlah berkas HTML baru dengan nama edit_product.html**
+   - Buatlah berkas HTML baru dengan nama edit_product.html pada subdirektori main/templates kemudian isi dengan kode berikut
+   ```html
+   {% extends 'base.html' %}
+
+   {% load static %}
+
+   {% block content %}
+
+   <h1>Edit Product</h1>
+
+   <form method="POST">
+      {% csrf_token %}
+      <table>
+         {{ form.as_table }}
+         <tr>
+               <td></td>
+               <td>
+                  <input type="submit" value="Edit Product"/>
+               </td>
+         </tr>
+      </table>
+   </form>
+
+   {% endblock %}
+   ```
+
+3. **Menambah import fungsi edit_product yang sudah dibuat**
+   - Buka urls.py yang ada di folder main kemudian tambahkan import fungsi
+   ```python
+   from main.views import edit_product
+   ```
+
+4. **Mengakses fungsi yang sudah diimport sebelumnya**
+   - Tambahkan path url ke dalam urlpatterns pada urls.py di main
+   ```python
+   path('edit-product/<int:id>', edit_product, name='edit_product'),
+   ```
+
+5. **Membuat tombol edit pada setiap tabel**
+   - Buka main.html yang berada ada di folder main. Tambahkan kode berikut sejajar dengan elemen <td> terakhir agar terlihat tombol edit pada setiap baris tabel.
+   ```html
+   <tr>
+      ...
+      <td>
+         <a href="{% url 'main:edit_product' product.pk %}">
+               <button>
+                  Edit
+               </button>
+         </a>
+      </td>
+   </tr>
+   ```
+
+## Membuat Fungsi untuk Menghapus Data Produk
+
+1. **Membuat fungsi baru bernama delete_product**
+   - Buka file views.py yang ada di subdirektori main. Buatlah fungsi baru bernama delete_product yang menerima parameter request dan id
+   ```python
+   def delete_product(request, id):
+      # Get data berdasarkan ID
+      product = Product.objects.get(pk = id)
+      # Hapus data
+      product.delete()
+      # Kembali ke halaman awal
+      return HttpResponseRedirect(reverse('main:show_main'))
+   ```
+
+2. **Menambah import fungsi delete_product yang sudah dibuat**
+   - Buka urls.py yang ada di folder main kemudian tambahkan import fungsi
+   ```python
+   from main.views import delete_product
+   ```
+
+3. **Mengakses fungsi yang sudah diimport sebelumnya**
+   - Tambahkan path url ke dalam urlpatterns pada urls.py di main
+   ```python
+   path('delete/<int:id>', delete_product, name='delete_product'),
+   ```
+
+4. **Membuat tombol delete pada setiap tabel**
+   - Buka main.html yang berada ada di folder main. Tambahkan kode berikut agar terlihat tombol delete pada setiap baris tabel.
+   ```html
+   <tr>
+      ...
+      <td>
+         <a href="{% url 'main:edit_product' product.pk %}">
+               <button>
+                  Edit
+               </button>
+         </a>
+         <a href="{% url 'main:delete_product' product.pk %}">
+               <button>
+                     Delete
+               </button>
+            </a>
+      </td>
+   </tr>
+   ```
+
+## Melakukan Kustomisasi
+
+1. **Memindahkan semua styling ke base.html agar program terlihat rapi dan tertata**
+
+2. **Melakukan kustomisasi sesuai yang diinginkan**
+   - Berikut salah satu contoh kustomisasi yang dilakukan :
+   ```html
+   .tg  {
+         width: 100%;
+         border-collapse:collapse;
+         border-spacing:0;
+         margin:0px auto;
+         border: 2px solid #ddd;
+         }
+   .tg td{
+         border-color:black;
+         border-style:solid;
+         border-width:1px;
+         font-family:Arial, sans-serif;
+         font-size:14px;
+         overflow:hidden;
+         padding:10px 5px;
+         word-break:normal;
+         text-align:center;
+         border: 2px solid #ddd;
+         }
+   ```
+   - Kode CSS tersebut digunakan untuk mengatur tampilan tabel HTML dengan class tg dan sel-sel di dalamnya. Ini mencakup pengaturan lebar, batas sel, jenis font, ukuran font, padding, dan sebagainya untuk membuat tabel yang terlihat rapi dan mudah dibaca
+
+3. **Kustomisasi tombol/button**
+   - Berikut contoh kustomisasi tombol
+   ```html
+   button:hover {
+      background-color: #007bff;
+      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+      }
+   ```
+   - Kode CSS tersebut mengatur tampilan tombol saat mouse berada di atasnya, dengan mengubah warna latar belakang menjadi biru dan warna teks menjadi putih dengan transisi animasi selama 0.3 detik
+
+4. **Kustomisasi untuk memberikan warna pada tabel**
+   - Berikut contoh pemberian warna pada tabel
+   ```html
+   .tg th{
+         border-color:black;
+         border-style:solid;
+         border-width:1px;
+         font-family:Arial, sans-serif;
+         font-size:14px;
+         font-weight:normal;
+         overflow:hidden;
+         padding:10px 5px;
+         word-break:normal;
+         border: 2px solid #ddd;
+         background-color: antiquewhite;
+         }
+   ```
+   - Kode CSS background-color: antiquewhite; memberikan warna pada tabel

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Euro Golf</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Info
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:pricelist' %}">Pricelist</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'main:steel_view' %}">Steel Shaft</a></li>
+                    <li><a class="dropdown-item" href="{% url 'main:graphite_view' %}">Graphite Shaft</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+            </li>
+            </ul>
+            <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
+    <div class = "Judul_steel">
+        Steel Shaft
+    </div>
+    </br>
+    <table class="tabel_steel">
+    <thead>
+    <tr>
+        <th class="tg-0lax">Name</th>
+        <th class="tg-0lax">Image</th>
+        <th class="tg-0lax">Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="tg-0lax">Dynamic Gold X7</td>
+        <td class="tg-0lax"><img src="https://www.truetempersports.com/en-us/media/catalog/product/d/y/dynamicgold_x7_hero.png?quality=80&fit=bounds&height=700&width=700&canvas=700:700" width="150" height="108"/></td>
+        <td class="tg-0lax">Rp 5.500.000,00</td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">KBS C-TAPER</td>
+        <td class="tg-0lax"><img src="https://kbsgolfshafts.com/wp-content/uploads/2023/02/kbs_ctaper_110_r_d.png" width="150" height="108"/></td>
+        <td class="tg-0lax">Rp 5.500.000,00</td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">UST Recoil 110</td>
+        <td class="tg-0lax"><img src="https://www.alphagolfclubs.com/cdn/shop/products/iron-recoil_5b0759b9-a4a4-4860-85a5-872852067447_700x700.jpg?v=1649178924" width="150" height="108"/></td>
+        <td class="tg-0lax">Rp 6.000.000,00</td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">Project X Steel</td>
+        <td class="tg-0lax"><img src="https://www.truetempersports.com/en-us/golf/media/catalog/product/p/r/projectx_hero.png?quality=80&fit=bounds&height=700&width=700&canvas=700:700" width="150" height="108"/></td>
+        <td class="tg-0lax">Rp 5.500.000,00</td>
+    </tr>
+    </tbody>
+    </table>
+    </br>
+    <marquee behavior="scroll" direction="right" style= "color: blueviolet;">
+        Welcome to Euro Golf! 
+    </marquee>
+{% endblock content %}

@@ -2,37 +2,361 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% block meta %}
         <meta charset="UTF-8" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
         />
+        {% endblock meta %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
         <title>
             Euro Golf
         </title>
         <style type="text/css">
-            .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-            .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-            overflow:hidden;padding:10px 5px;word-break:normal;text-align:center}
-            .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-            .tg .tg-ps66{font-size:11px;text-align:left;vertical-align:top}
-            .tg .tg-0lax{text-align:center;vertical-align:top}
+            .tg  {
+                width: 100%;
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto;
+                border: 2px solid #ddd;
+            }
+            .tg td{
+                border-color:black;
+                border-style:solid;
+                border-width:1px;
+                font-family:Arial, sans-serif;
+                font-size:14px;
+                overflow:hidden;
+                padding:10px 5px;
+                word-break:normal;
+                text-align:center;
+                border: 2px solid #ddd;
+            }
+            .tg th{
+                border-color:black;
+                border-style:solid;
+                border-width:1px;
+                font-family:Arial, sans-serif;
+                font-size:14px;
+                font-weight:normal;
+                overflow:hidden;
+                padding:10px 5px;
+                word-break:normal;
+                border: 2px solid #ddd;
+                background-color: antiquewhite;
+            }
+            .tg .tg-ps66{
+                font-size:11px;
+                text-align:left;
+                vertical-align:top
+            }
+            .tg .tg-0lax{
+                text-align:center;
+                vertical-align:top
+            }
             h1 {
-                font-size:big; color: rgb(0, 34, 128);
+                font-size:big;
+                color: rgb(0, 34, 128);
                 text-align: center;
             }
-            h5 {
-                font-size:medium; color: darkgreen;
+            .judul{
                 text-align: center;
             }
-            </style>
-        {% block meta %}
-        {% endblock meta %}
+            .profile h5{
+                text-align: left;
+                font-size: 18px;
+            }
+            .info_login{
+                color: darkgreen;
+            }
+            .register{
+                text-align: left;
+            }
+            .tabel_pricelist {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto;
+            }
+            .tabel_pricelist td{
+                border-color:black;
+                border-style:solid;
+                border-width:1px;
+                font-family:Arial, sans-serif;
+                font-size:14px;
+                overflow:hidden;
+                padding:10px 5px;
+                word-break:normal;
+            }
+            .tabel_pricelist th{
+                border-color:black;
+                border-style:solid;
+                border-width:1px;
+                font-family:Arial, sans-serif;
+                font-size:14px;
+                font-weight:normal;
+                overflow:hidden;
+                padding:10px 5px;
+                word-break:normal;
+            }
+            .tabel_pricelist .tabel_pricelist-p1nr{
+                border-color:inherit;
+                font-size:11px;
+                text-align:left;
+                vertical-align:top
+            }
+            .tabel_pricelist .tabel_pricelist-0pky{
+                border-color:inherit;
+                text-align:left;
+                vertical-align:top
+            }
+            .tabel_pricelist .tabel_pricelist-0lax{
+                text-align:left;
+                vertical-align:top
+            }
+            .Judul_pricelist {
+                background-color: blanchedalmond;
+                color: #000; 
+                font-size: 24px; 
+                text-align: center;
+                padding: 10px; 
+                margin-bottom: 20px; 
+                font-weight: bold; 
+                text-transform: uppercase; 
+            }
+            .Judul_steel {
+                background-color: blanchedalmond;
+                color: #000; 
+                font-size: 24px; 
+                text-align: center;
+                padding: 10px; 
+                margin-bottom: 20px; 
+                font-weight: bold; 
+                text-transform: uppercase; 
+            }
+            .Judul_graphite {
+                background-color: blanchedalmond;
+                color: #000; 
+                font-size: 24px; 
+                text-align: center;
+                padding: 10px; 
+                margin-bottom: 20px; 
+                font-weight: bold; 
+                text-transform: uppercase; 
+            }
+            .tabel_pricelist {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 16px;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .tabel_pricelist th,
+            .tabel_pricelist td {
+                padding: 10px;
+                border: 1px solid #000;
+            }
+            .tabel_pricelist tbody tr:hover {
+                background-color: #f5f5f5;
+                transform: scale(1.02); 
+                transition: background-color 0.3s, transform 0.3s;
+            }
+            .tabel_pricelist tbody tr:hover td {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: box-shadow 0.3s;
+            }
+            .tabel_steel {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 16px;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .tabel_steel th,
+            .tabel_steel td {
+                padding: 10px;
+                border: 1px solid #000;
+            }
+            .tabel_steel tbody tr:hover {
+                background-color: #f5f5f5;
+                transform: scale(1.02); 
+                transition: background-color 0.3s, transform 0.3s;
+            }
+            .tabel_steel tbody tr:hover td {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: box-shadow 0.3s;
+            }
+            .tabel_graphite {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 16px;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .tabel_graphite th,
+            .tabel_graphite td {
+                padding: 10px;
+                border: 1px solid #000;
+            }
+            .tabel_graphite tbody tr:hover {
+                background-color: #f5f5f5;
+                transform: scale(1.02); 
+                transition: background-color 0.3s, transform 0.3s;
+            }
+            .tabel_graphite tbody tr:hover td {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: box-shadow 0.3s;
+            }
+            button:hover {
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            }
+            .nav-link:hover {
+                color: #007bff;
+                transition: color 0.3s;
+            }
+            .add-product-container {
+                text-align: center;
+                margin: 20px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            }
+            .add-product-container h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .form-container {
+                margin: 20px auto;
+                max-width: 400px;
+            }
+            .button-container {
+                margin-top: 20px;
+            }
+            .cancel-button {
+                background-color: #ddd;
+                color: #333;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .cancel-button:hover {
+                background-color: #888;
+                color: #fff;
+            }
+            .add-button {
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .add-button:hover {
+                background-color: #0056b3;
+            }
+            .delete {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                text-align: center;
+            }
+            .delete h2 {
+                font-size: 24px;
+                color: #333;
+            }
+            .delete p {
+                font-size: 18px;
+                margin-top: 20px;
+                color: #555;
+            }
+            .delete form {
+                margin-top: 20px;
+            }
+            .delete input[type="submit"] {
+                background-color: #ff4d4d;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .delete input[type="submit"]:hover {
+                background-color: #e60000;
+            }
+            .delete button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .delete button:hover {
+                background-color: #0056b3;
+            }
+            .login-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #f5f5f5;
+            }
+            .login {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            .btn.login-btn {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .btn.login-btn:hover {
+                background-color: #0056b3;
+            }
+            .error-messages {
+                list-style-type: none;
+                color: #ff0000;
+            }
+            .register {
+                margin-top: 10px;
+                font-size: 14px;
+            }
+        </style>
     </head>
 
     <body>
-        {% block content %}
-        {% endblock content %}
+        <div class="judul">
+            <h1>Welcome to Euro Golf</h1>
+            <h3>Your Premier Golf Destination</h3>
+    
+            {% block content %}
+            {% endblock content %}
+        </div>
     </body>
 </html>
