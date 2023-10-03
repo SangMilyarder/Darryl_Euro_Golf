@@ -1188,29 +1188,37 @@ div {
 ## Perbedaan Antara Framework CSS Tailwind dan Bootstrap
 
 **1. Pengertian:**
+
 - CSS Tailwind adalah framework "utility-first," yang berfokus pada penggunaan kelas CSS yang dapat digunakan secara langsung dalam HTML untuk membangun tampilan. Hal ini memberikan fleksibilitas tinggi tetapi memerlukan lebih banyak penulisan kode HTML.
+
 - Bootstrap adalah framework "component-first," yang berfokus pada komponen siap pakai yang dapat dengan mudah dimasukkan ke dalam proyek. Hal ini menghasilkan kode HTML yang lebih bersih tetapi mungkin memiliki sedikit kurang fleksibilitas.
 
 **2. Penggunaan Kelas CSS:**
-CSS Tailwind:\
+
+CSS Tailwind:
 - Memerlukan penggunaan banyak kelas CSS dalam HTML untuk mengatur tampilan elemen. Hal ini memungkinkan tingkat kustomisasi tinggi tetapi dapat membuat markup HTML menjadi besar dan sulit dibaca.
 
-Bootstrap:\
+Bootstrap:
 - Menggunakan lebih sedikit kelas CSS dalam HTML karena komponennya sudah memiliki kelas-kelas yang telah ditentukan. Hal ini menghasilkan markup yang lebih bersih tetapi mungkin kurang fleksibel.
 
 **3. Tingkat Kustomisasi:**
-CSS Tailwind:\
+
+CSS Tailwind:
 - Memberikan tingkat kustomisasi yang sangat tinggi. Anda dapat menyesuaikan setiap detail tampilan dengan mengedit konfigurasi atau menambahkan kelas tambahan sesuai kebutuhan.
-Bootstrap:\
+
+Bootstrap:
 - Lebih mudah digunakan untuk membangun situs web dengan tampilan yang konsisten karena komponennya sudah dibuat sebelumnya. Kustomisasi komponen Bootstrap mungkin memerlukan lebih banyak pekerjaan daripada Tailwind.
 
 **4. Ukuran File:**
-Tailwind CSS:\
+
+Tailwind CSS:
 - File CSS lebih besar karena menghasilkan banyak kelas yang harus di-render oleh browser.
-Bootstrap:\
+
+Bootstrap:
 - File CSS lebih kecil karena hanya memuat komponen yang digunakan dalam proyek.
 
-**Kapan Sebaiknya Menggunakan Bootstrap daripada Tailwind, dan Sebaliknya?**
+## Kapan Sebaiknya Menggunakan Bootstrap daripada Tailwind, dan Sebaliknya?
+
 **Gunakan Bootstrap Ketika:**
 - Ingin mengembangkan proyek dengan cepat dan memerlukan komponen siap pakai yang dapat disesuaikan serta menginginkan tampilan yang konsisten dan memiliki desain yang sudah dirancang dengan baik.
 - Tidak ingin terlalu banyak menulis kode HTML dan CSS kustom.
