@@ -1232,3 +1232,275 @@ Bootstrap:
 - Ingin tingkat kustomisasi yang sangat tinggi untuk tampilan program.
 - Suka mengontrol setiap detail tampilan program melalui kelas-kelas CSS.
 - Ingin menghindari file CSS yang besar dan hanya menghasilkan kode CSS yang dibutuhkan.
+
+## Langkah mengimplementasikan checklist secara step-by-step
+
+## Menambahkan Bootstrap ke Aplikasi
+
+1. **Memodifikasi file base.html**
+   - Buka file base.html kemudian tambahkan tag <meta name="viewport"> agar halaman web dapat menyesuaikan ukuran dan perilaku perangkat mobile
+   ```html
+   <head>
+    {% block meta %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+   </head>
+   ```
+
+2. **Tambahkan kembali di dalam base.html**
+   - Tambahkan Bootstrap CSS dan juga JS
+   CSS:
+
+   ```html
+   <head>
+    {% block meta %}
+        ...
+    {% endblock meta %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   </head>
+   ```
+   JS:
+
+   ```html
+   <head>
+    ...
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+   </head>
+   ```
+
+3. **Menambah kembali script JS**
+   - Menambahkan kembali untuk menggunakan dropdowns, popover, tooltips yang disediakan framework Bootstrap
+   ```html
+   <head>
+    ...
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+   </head>
+   ```
+
+## Menambahkan navbar pada Aplikasi
+
+1. **Buka file main.html yang ada di templates**
+   - Masukkan kode ini untuk menginisiasi navbar
+   ```html
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Euro Golf</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+            </li>
+            <li class="new_product">
+                <a class="nav-link" href="{% url 'main:create_product' %}">Add New Product</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Info
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:pricelist' %}">Pricelist</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'main:steel_view' %}">Steel Shaft</a></li>
+                    <li><a class="dropdown-item" href="{% url 'main:graphite_view' %}">Graphite Shaft</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+            </li>
+            </ul>
+            <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
+    ```
+   
+2. **Modifikasi kembali kode tersebut**
+   - Modifikasi kode tersebut jika ingin menambahkan fitur pada navbar
+
+## Menambahkan Fitur Edit pada Aplikasi
+
+1. **Membuat fungsi baru bernama edit_product**
+   - Buka file views.py yang ada di subdirektori main. Buatlah fungsi baru bernama edit_product yang menerima parameter request dan id
+   ```python
+   def edit_product(request, id):
+      # Get product berdasarkan ID
+      product = Product.objects.get(pk = id)
+
+      # Set product sebagai instance dari form
+      form = ProductForm(request.POST or None, instance=product)
+
+      if form.is_valid() and request.method == "POST":
+         # Simpan form dan kembali ke halaman awal
+         form.save()
+         return HttpResponseRedirect(reverse('main:show_main'))
+
+      context = {'form': form}
+      return render(request, "edit_product.html", context)
+    ```
+
+2. **Buatlah berkas HTML baru dengan nama edit_product.html**
+   - Buatlah berkas HTML baru dengan nama edit_product.html pada subdirektori main/templates kemudian isi dengan kode berikut
+   ```html
+   {% extends 'base.html' %}
+
+   {% load static %}
+
+   {% block content %}
+
+   <h1>Edit Product</h1>
+
+   <form method="POST">
+      {% csrf_token %}
+      <table>
+         {{ form.as_table }}
+         <tr>
+               <td></td>
+               <td>
+                  <input type="submit" value="Edit Product"/>
+               </td>
+         </tr>
+      </table>
+   </form>
+
+   {% endblock %}
+   ```
+
+3. **Menambah import fungsi edit_product yang sudah dibuat**
+   - Buka urls.py yang ada di folder main kemudian tambahkan import fungsi
+   ```python
+   from main.views import edit_product
+   ```
+
+4. **Mengakses fungsi yang sudah diimport sebelumnya**
+   - Tambahkan path url ke dalam urlpatterns pada urls.py di main
+   ```python
+   path('edit-product/<int:id>', edit_product, name='edit_product'),
+   ```
+
+5. **Membuat tombol edit pada setiap tabel**
+   - Buka main.html yang berada ada di folder main. Tambahkan kode berikut sejajar dengan elemen <td> terakhir agar terlihat tombol edit pada setiap baris tabel.
+   ```html
+   <tr>
+      ...
+      <td>
+         <a href="{% url 'main:edit_product' product.pk %}">
+               <button>
+                  Edit
+               </button>
+         </a>
+      </td>
+   </tr>
+   ```
+
+## Membuat Fungsi untuk Menghapus Data Produk
+
+1. **Membuat fungsi baru bernama delete_product**
+   - Buka file views.py yang ada di subdirektori main. Buatlah fungsi baru bernama delete_product yang menerima parameter request dan id
+   ```python
+   def delete_product(request, id):
+      # Get data berdasarkan ID
+      product = Product.objects.get(pk = id)
+      # Hapus data
+      product.delete()
+      # Kembali ke halaman awal
+      return HttpResponseRedirect(reverse('main:show_main'))
+   ```
+
+2. **Menambah import fungsi delete_product yang sudah dibuat**
+   - Buka urls.py yang ada di folder main kemudian tambahkan import fungsi
+   ```python
+   from main.views import delete_product
+   ```
+
+3. **Mengakses fungsi yang sudah diimport sebelumnya**
+   - Tambahkan path url ke dalam urlpatterns pada urls.py di main
+   ```python
+   path('delete/<int:id>', delete_product, name='delete_product'),
+   ```
+
+4. **Membuat tombol delete pada setiap tabel**
+   - Buka main.html yang berada ada di folder main. Tambahkan kode berikut agar terlihat tombol delete pada setiap baris tabel.
+   ```html
+   <tr>
+      ...
+      <td>
+         <a href="{% url 'main:edit_product' product.pk %}">
+               <button>
+                  Edit
+               </button>
+         </a>
+         <a href="{% url 'main:delete_product' product.pk %}">
+               <button>
+                     Delete
+               </button>
+            </a>
+      </td>
+   </tr>
+   ```
+
+## Melakukan Kustomisasi
+
+1. **Memindahkan semua styling ke base.html agar program terlihat rapi dan tertata**
+
+2. **Melakukan kustomisasi sesuai yang diinginkan**
+   - Berikut salah satu contoh kustomisasi yang dilakukan :
+   ```html
+   .tg  {
+         width: 100%;
+         border-collapse:collapse;
+         border-spacing:0;
+         margin:0px auto;
+         border: 2px solid #ddd;
+         }
+   .tg td{
+         border-color:black;
+         border-style:solid;
+         border-width:1px;
+         font-family:Arial, sans-serif;
+         font-size:14px;
+         overflow:hidden;
+         padding:10px 5px;
+         word-break:normal;
+         text-align:center;
+         border: 2px solid #ddd;
+         }
+   ```
+   - Kode CSS tersebut digunakan untuk mengatur tampilan tabel HTML dengan class tg dan sel-sel di dalamnya. Ini mencakup pengaturan lebar, batas sel, jenis font, ukuran font, padding, dan sebagainya untuk membuat tabel yang terlihat rapi dan mudah dibaca
+
+3. **Kustomisasi tombol/button**
+   - Berikut contoh kustomisasi tombol
+   ```html
+   button:hover {
+      background-color: #007bff;
+      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+      }
+   ```
+   - Kode CSS tersebut mengatur tampilan tombol saat mouse berada di atasnya, dengan mengubah warna latar belakang menjadi biru dan warna teks menjadi putih dengan transisi animasi selama 0.3 detik
+
+4. **Kustomisasi untuk memberikan warna pada tabel**
+   - Berikut contoh pemberian warna pada tabel
+   ```html
+   .tg th{
+         border-color:black;
+         border-style:solid;
+         border-width:1px;
+         font-family:Arial, sans-serif;
+         font-size:14px;
+         font-weight:normal;
+         overflow:hidden;
+         padding:10px 5px;
+         word-break:normal;
+         border: 2px solid #ddd;
+         background-color: antiquewhite;
+         }
+   ```
+   - Kode CSS background-color: antiquewhite; memberikan warna pada tabel
