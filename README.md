@@ -1067,6 +1067,7 @@ p::first-line {
 ## Tag HTML5
 
 **1. header**
+
 Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas sebuah halaman atau bagian dari halaman. Biasanya berisi judul, logo, dan elemen-elemen navigasi.
 
 ```html
@@ -1083,6 +1084,7 @@ Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas sebuah h
 ```
 
 **2. nav**
+
 Mengelompokkan elemen-elemen yang berisi menu navigasi atau tautan ke halaman-halaman terkait.
 
 ```html
@@ -1096,6 +1098,7 @@ Mengelompokkan elemen-elemen yang berisi menu navigasi atau tautan ke halaman-ha
 ```
 
 **3. main**
+
 Digunakan untuk mengelompokkan konten utama dari sebuah halaman web. Biasanya hanya ada satu elemen <main> dalam satu halaman.
 
 ```html
@@ -1106,6 +1109,7 @@ Digunakan untuk mengelompokkan konten utama dari sebuah halaman web. Biasanya ha
 ```
 
 **4. article**
+
 Mengelompokkan konten yang berdiri sendiri dan dapat berdiri sendiri, seperti artikel berita atau posting blog.
 
 ```html
@@ -1116,6 +1120,7 @@ Mengelompokkan konten yang berdiri sendiri dan dapat berdiri sendiri, seperti ar
 ```
 
 **5. section**
+
 Mengelompokkan konten terkait dalam sebuah halaman. Bisa digunakan untuk membuat bagian-bagian dalam artikel atau halaman.
 
 ```html
@@ -1130,6 +1135,7 @@ Mengelompokkan konten terkait dalam sebuah halaman. Bisa digunakan untuk membuat
 ```
 
 **6. aside**
+
 Digunakan untuk mengelompokkan konten sampingan yang terkait dengan konten utama. Biasanya digunakan untuk sidebar atau iklan.
 
 ```html
@@ -1143,6 +1149,7 @@ Digunakan untuk mengelompokkan konten sampingan yang terkait dengan konten utama
 ```
 
 **7. footer**
+
 Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian bawah halaman atau bagian dari halaman. Biasanya berisi informasi hak cipta, tautan-tautan sosial, atau informasi kontak.
 
 ```html
