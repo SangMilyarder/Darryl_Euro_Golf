@@ -1,7 +1,6 @@
-Nama        : Darryl Nawawi
-NPM         : 2206083104
+Nama        : Darryl Nawawi/
+NPM         : 2206083104/
 Kelas       : PBP E
-Adaptable   : https://euro-golf.adaptable.app/main/
 
 ## Membuat sebuah proyek Django baru
 1. **Buat Direktori Khusus:**
