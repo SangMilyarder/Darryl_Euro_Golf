@@ -1,5 +1,5 @@
-Nama        : Darryl Nawawi/
-NPM         : 2206083104/
+Nama        : Darryl Nawawi <br>
+NPM         : 2206083104 <br>
 Kelas       : PBP E
 
 ## Membuat sebuah proyek Django baru
