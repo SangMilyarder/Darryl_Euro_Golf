@@ -37,71 +37,147 @@
         </div>
         </div>
     </nav>
-    <table class="tg">
-        <thead>
-            <tr>
-                <th class="tg-0lax">Name</th>
-                <th class="tg-0lax">Image</th>
-                <th class="tg-0lax">Price</th>
-                <th class="tg-0lax">Amount</th>
-                <th class="tg-0lax">Category</th>
-                <th class="tg-0lax">Description</th>
-                <th class="tg-0lax">Date Added</th>
-                <th class="tg-0lax">Add/Sub</th>
-                <th class="tg-0lax">Edit</th>
-                <th class="tg-0lax">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-            <tr>
-                <td class="tg-0lax">{{ product.name }}</td>
-                <td class="tg-0lax"><img src="{{ product.image }}" width="150" height="108" /></td>
-                <td class="tg-0lax">{{ product.price }}</td>
-                <td class="tg-0lax">{{ product.amount }}</td>
-                <td class="tg-0lax">{{ product.category }}</td>
-                <td class="tg-0lax">{{ product.description }}</td>
-                <td class="tg-0lax">{{ product.date_added }}</td>
-                <td>
-                    <form method="POST" action="{% url 'main:update_stock' product.id %}">
-                        {% csrf_token %}
-                        <button type="submit" name="action" value="add">+</button>
-                        <button type="submit" name="action" value="subtract">-</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="{% url 'main:edit_product' product.pk %}">
-                        <button>
-                            Edit
-                        </button>
-                    </a>
-                </td>
-                <div style="text-align:center;">
-                    <td>
-                        <a href="{% url 'main:delete_product' product.id %}">
-                            <button>
-                                Delete
-                            </button>
-                        </a>
-                    </td>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </tr>
-            {% endfor %}
-        </tbody>
-        </table>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="col-form-label">Category:</label>
+                            <textarea class="form-control" id="category" name="category"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="product_table" class="table table-bordered table-dark table-striped"></table>
+
     </br>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+
+        </br>
     <div class ="info_login">
         <h7>Total item yang dimasukkan: {{ count_item }}</h7>
         </br>
         <h7>Sesi terakhir login: {{ last_login }}</h7>
     </div>
 
-    <div class ="profile">
-        <h5>Name: {{ name }}</h5>
-        <h5>Class: {{ class }}</h5>
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: {{ name }}</li>
+            <li class="list-group-item">Class: {{ class }}</li>
+        </ul>
     </div>
 
     <marquee behavior="scroll" direction="right" style= "color: blue">
         Welcome to Euro Golf! 
     </marquee>
+
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+        async function deleteProduct(productId) {
+            try { 
+                const response = await fetch("{% url 'main:delete_product_ajax' 0 %}".replace('0', productId), {
+                    method: 'POST',
+                });
+                
+                if (response.ok) {
+                    // Produk berhasil dihapus, refresh daftar produk
+                    refreshProducts();
+                } else {
+                    // Handle kesalahan jika diperlukan
+                    console.error('Gagal menghapus produk.');
+                }
+            } catch (error) {
+                console.error('Terjadi kesalahan:', error);
+            }
+        }
+        async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Add/Sub</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>`
+        products.forEach((item) => {
+            htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.price}</td>
+            <td>${item.fields.amount}</td>
+            <td>${item.fields.category}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.date_added}</td>
+            <td>
+                <a href="add_stock/${item.pk}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-sm btn-secondary">+</button>
+                </a>
+                <a href="subtract_stock/${item.pk}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-sm btn-secondary">-</button>
+                </a>
+            </td>
+            <td>
+                <a href="edit-product/${item.pk}">
+                    <button type="button" class="btn btn-sm btn-primary">Edit</button>
+                </a>
+            </td>
+            <td>
+                <a onclick="deleteProduct(${item.pk})">
+                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                </a>
+            </td>
+        </tr>` 
+        })
+        
+        document.getElementById("product_table").innerHTML = htmlString
+        } function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+        }
+        document.getElementById("button_add").onclick = addProduct
+        refreshProducts()
+    </script>
 {% endblock content %}

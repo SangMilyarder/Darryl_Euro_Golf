@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from main.forms import ProductForm
 from django.http import HttpResponse
 from django.core import serializers
@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -51,16 +52,17 @@ def create_product(request):
     context = {'form': form}
     return render(request, "create_product.html", context)
 
-def update_stock(request, product_id):
-    product = Product.objects.get(id=product_id)
-    action = request.POST.get('action')
-
-    if action == 'add':
-        product.amount += 1
-    elif action == 'subtract' and product.amount > 0:
-        product.amount -= 1
-
+def add_stock(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    product.amount += 1
     product.save()
+    return redirect('main:show_main')
+
+def subtract_stock(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if product.amount > 0:
+        product.amount -= 1
+        product.save()
     return redirect('main:show_main')
 
 def show_xml(request):
@@ -131,3 +133,33 @@ def edit_product(request, id):
 
     context = {'form': form}
     return render(request, "edit_product.html", context)
+
+def get_product_json(request):
+    product_item = Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        amount = request.POST.get("amount")
+        category = request.POST.get("category")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Product(name=name, price=price, amount=amount, category=category, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+    
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_product_ajax(request, id):
+    product = get_object_or_404(Product, pk=id)
+
+    if request.method == 'POST':
+        product.delete()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    return HttpResponseNotFound
