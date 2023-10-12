@@ -1,7 +1,3 @@
-Nama        : Darryl Nawawi <br>
-NPM         : 2206083104 <br>
-Kelas       : PBP E
-
 ## Membuat sebuah proyek Django baru
 1. **Buat Direktori Khusus:**
    - Mulailah dengan membuat direktori khusus untuk proyek Django Anda.
