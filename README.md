@@ -1,3 +1,11 @@
+Nama        : Darryl Nawawi
+
+NPM         : 2206083104
+
+Kelas       : PBP E
+
+Adaptable   : http://darryl-nawawi-tugas.pbp.cs.ui.ac.id
+
 ## Membuat sebuah proyek Django baru
 1. **Buat Direktori Khusus:**
    - Mulailah dengan membuat direktori khusus untuk proyek Django Anda.
@@ -1499,3 +1507,292 @@ Bootstrap:
          }
    ```
    - Kode CSS background-color: antiquewhite; memberikan warna pada tabel
+
+## Tugas 6
+
+## Perbedaan Antara Asynchronous Programming Dengan Synchronous Programming
+
+# Synchronous Programming
+
+Synchronous programming adalah paradigma di mana kode dieksekusi secara berurutan, satu perintah setelah yang lain, dimana jika ada tugas yang memerlukan waktu yang lama untuk selesai, hal tersebut akan menghentikan eksekusi program dan membuat program terasa lambat. User harus menunggu hingga tugas tersebut selesai sebelum program melanjutkan ke tugas berikutnya.
+
+Contoh:
+```javascript
+console.log("Langkah 1");
+console.log("Langkah 2");
+console.log("Langkah 3");
+```
+
+# Asynchronous Programming
+
+Asynchronous programming adalah paradigma di mana kode dapat melanjutkan eksekusi tanpa harus menunggu tugas tertentu selesai (non-blocking). Hal ini memungkinkan program untuk tetap responsif dan tidak terblokir oleh tugas yang memerlukan waktu yang lama. Biasanya, dalam asynchronous programming, kita menggunakan callback, promise, atau async/await untuk mengelola tugas yang berjalan secara asynchronous.
+
+Contoh:
+```javascript
+async function refreshProducts() {
+   document.getElementById("product_table").innerHTML = ""
+   const products = await getProducts()
+   ...
+```
+
+## Paradigma Event-Driven Programming dalam JavaScript dan AJAX
+
+Paradigma event-driven programming adalah pendekatan di mana program merespons peristiwa atau kejadian tertentu yang terjadi. Dalam JavaScript dan AJAX, paradigma ini sering digunakan untuk mengatasi interaksi pengguna dan permintaan data dari server.
+
+Salah satu contoh penerapannya pada tugas ini adalah penggunaan event listener untuk menangani peristiwa seperti mengklik tombol atau mengirim permintaan AJAX setelah suatu peristiwa tertentu terjadi.
+
+Contoh:
+```javascript
+// Mendengarkan peristiwa klik pada tombol
+const button = document.querySelector("#myButton");
+button.addEventListener("click", () => {
+  // Kode untuk mengirim permintaan AJAX
+});
+```
+
+## Asynchronous programming pada AJAX
+
+Asynchronous JavaScript and XML (AJAX) adalah teknik yang digunakan untuk mengambil data dari server tanpa harus melakukan refresh pada halaman web. Penerapan asynchronous programming pada AJAX memungkinkan aplikasi web untuk tetap responsif dan tidak menghalangi interaksi pengguna selama data diambil dari server. Berikut adalah alur asynchronous programming pada AJAX:
+
+1. Event dipicu pada halaman web (seperti menekan tombol "Submit" untuk mengirim data).
+2. Dalam respons terhadap event tersebut, JavaScript membuat sebuah objek XMLHttpRequest. Objek XMLHttpRequest digunakan untuk mengirimkan permintaan ke server.
+3. Server menerima permintaan dan memprosesnya sesuai dengan instruksi yang diberikan.
+4. Setelah selesai memproses permintaan, server mengirimkan respons ke halaman web.
+5. JavaScript di halaman web membaca respons yang diterima dari server.
+6. Berdasarkan respons tersebut, JavaScript mengeksekusi tindakan atau aksi berikutnya sesuai dengan instruksi yang telah didefinisikan dalam program.
+
+## Perbandingan Fetch API dan jQuery untuk Penerapan AJAX
+
+# Fetch API
+
+1. Native JavaScript:
+Fetch API adalah bagian dari JavaScript, sehingga tidak memerlukan pustaka eksternal seperti jQuery.
+2. Lebih Ringan:
+Fetch API lebih ringan dalam hal ukuran, sehingga mengurangi beban halaman web.
+3. Promise-Based:
+Menggunakan promise untuk mengelola permintaan, yang membuat kode lebih mudah dibaca dan dijalankan secara asynchronous.
+
+# jQuery
+
+1. Pustaka Eksternal:
+Memerlukan pustaka jQuery yang harus diunduh dan dimuat di halaman web.
+2. Dukungan Silang Browser:
+jQuery memiliki dukungan yang baik untuk browser yang lebih lama, yang mungkin diperlukan dalam beberapa kasus.
+3. API yang Lebih Tinggi:
+jQuery menyediakan API yang lebih tinggi dan lebih mudah digunakan dalam beberapa situasi.
+
+## Pendapat
+
+Menurut pendapat saya, penggunaan Fetch API merupakan pilihan yang lebih tepat. Fetch API memiliki kelebihan dalam hal kejelasan sintaksis, penggunaan konsep-konsep terbaru dalam JavaScript, dan fokus pada permintaan HTTP. Selain itu, memahami Fetch API juga dapat memberikan pemahaman yang mendalam tentang aspek-aspek dasar dalam pengembangan web, yang akan berguna dalam berbagai proyek ke depannya.
+
+## Langkah mengimplementasikan checklist secara step-by-step
+
+## Implementasi AJAX GET
+
+1. **Membuat fungsi baru untuk mengembalikan data JSON**
+- Buatlah fungsi baru pada file views.py dengan nama get_product_json yang menerima parameter request.
+```python
+def get_product_json(request):
+   product_item = Product.objects.all()
+   return HttpResponse(serializers.serialize('json', product_item))
+```
+
+2. **Impor fungsi yang sudah dibuat pada urls.py**
+- Impor fungsi get_product_json yang sudah dibuat sebelumnya
+
+3. **Menambah path pada urls.py**
+- Tambahkan path yang sudah diimpor
+```python
+path('get-product/', get_product_json, name='get_product_json'),
+```
+
+4. **Bukalah file main.html yang ada di folder template**
+- Hapus bagian kode table sudah ada.
+
+5. **Buatlah struktur tabelnya**
+- Berikut kode untuk struktur tabelnya
+```html
+ <table id="product_table" class="table table-bordered table-dark table-striped"></table>
+```
+
+6. **Membuat block script di bagian bawah berkas main.html dan membuat fungsi baru dengan nama getProducts()**
+- 
+```javascript
+async function getProducts() {
+      return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+   }
+```
+
+## Implementasi AJAX POST
+
+1. **Menambah import yang diperlukan di views.py**
+- Impor from django.views.decorators.csrf import csrf_exempt
+
+2. **Membuat fungsi baru untuk menambahkan produk baru ke basis data dengan AJAX**
+- Buatlah fungsi baru pada file views.py dengan nama add_product_ajax yang menerima parameter request.
+```python
+@csrf_exempt
+def add_product_ajax(request):
+if request.method == 'POST':
+    name = request.POST.get("name")
+    price = request.POST.get("price")
+    description = request.POST.get("description")
+    user = request.user
+
+    new_product = Product(name=name, price=price, description=description, user=user)
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+
+return HttpResponseNotFound()
+```
+
+3. **Impor fungsi yang sudah dibuat pada urls.py**
+- Impor fungsi add_product_ajax yang sudah dibuat sebelumnya
+
+4. **Menambah path pada urls.py**
+- Tambahkan path yang sudah diimpor
+```python
+path('create-ajax/', add_product_ajax, name='add_product_ajax'),
+```
+
+5. **Membuat block script di bagian bawah berkas main.html dan membuat fungsi baru dengan nama refreshProducts()**
+- Untuk melakukan refresh pada halaman utama secara asinkronus sehingga tidak memerlukan reload halaman utama saat penambahan produk
+```javascript
+async function refreshProducts() {
+      document.getElementById("product_table").innerHTML = ""
+      const products = await getProducts()
+      let htmlString = `<tr>
+         <th>Name</th>
+         <th>Price</th>
+         <th>Amount</th>
+         <th>Category</th>
+         <th>Description</th>
+         <th>Date Added</th>
+         <th>Add/Sub</th>
+         <th>Edit</th>
+         <th>Delete</th>
+
+      </tr>`
+      products.forEach((item) => {
+         htmlString += `\n<tr>
+         <td>${item.fields.name}</td>
+         <td>${item.fields.price}</td>
+         <td>${item.fields.amount}</td>
+         <td>${item.fields.category}</td>
+         <td>${item.fields.description}</td>
+         <td>${item.fields.date_added}</td>
+         <td>
+               <a href="add_stock/${item.pk}" style="text-decoration: none;">
+                  <button type="button" class="btn btn-sm btn-secondary">+</button>
+               </a>
+               <a href="subtract_stock/${item.pk}" style="text-decoration: none;">
+                  <button type="button" class="btn btn-sm btn-secondary">-</button>
+               </a>
+         </td>
+         <td>
+               <a href="edit-product/${item.pk}">
+                  <button type="button" class="btn btn-sm btn-primary">Edit</button>
+               </a>
+         </td>
+         <td>
+               <a onclick="deleteProduct(${item.pk})">
+                  <button type="button" class="btn btn-sm btn-danger">Delete</button>
+               </a>
+         </td>
+      </tr>` 
+      })
+      
+      document.getElementById("product_table").innerHTML = htmlString
+   }
+   refreshProducts()
+</script>
+```
+
+6. **Implementasikan modal (Bootstrap)**
+- Modal ini untuk mengisi data produk yang akan ditambahkan ke dalam daftar produk
+```html
+...
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+               <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form id="form" onsubmit="return false;">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                  </div>
+                  <div class="mb-3">
+                        <label for="price" class="col-form-label">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price"></input>
+                  </div>
+                  <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                  </div>
+                  <div class="mb-3">
+                        <label for="category" class="col-form-label">Category:</label>
+                        <textarea class="form-control" id="category" name="category"></textarea>
+                  </div>
+                  <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                  </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+      </div>
+   </div>
+</div>
+```
+
+7. **Tambahkan button untuk menampilkan modal yang sudah dibuat**
+- Berikut kodenya
+```html
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+```
+
+8. **Tambahkan fungsi baru pada block <Script>**
+- Buatlah fungsi baru dengan nama addProduct
+```html
+<script>
+    ...
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+</script>
+```
+
+9. **Tambahkan fungsi onclick pada button "Add Product" yang sudah dibuat sebelumnya**
+- Tambahkan fungsi untuk menjalankan fungsi addProduct()
+```html
+<script>
+...
+document.getElementById("button_add").onclick = addProduct
+</script>
+```
+
+## Melakukan Perintah collectstatic
+
+1. **Jalankan virtual environment terlebih dahulu**
+- Jalankan virtual environment dengan source env/bin/activate
+
+2. **Jalankan perintah untuk collectstatic**
+- Jalankan kode berikut untuk mengumpulkan file static dari setiap aplikasi ke dalam satu folder
+```python
+python manage.py collectstatic
+```
