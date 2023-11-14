@@ -38,6 +38,8 @@
         </div>
     </nav>
 
+    </br>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -78,106 +80,89 @@
         </div>
     </div>
 
-    <table id="product_table" class="table table-bordered table-dark table-striped"></table>
-
-    </br>
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
-
-        </br>
-    <div class ="info_login">
-        <h7>Total item yang dimasukkan: {{ count_item }}</h7>
-        </br>
-        <h7>Sesi terakhir login: {{ last_login }}</h7>
+    <div class="container">
+        <div class="row" id="product_card_row"></div>
     </div>
+      
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 20px;">Add Product by AJAX</button>
 
-    <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Name: {{ name }}</li>
-            <li class="list-group-item">Class: {{ class }}</li>
-        </ul>
+    <div class="info_login">
+    <h7>Total item yang dimasukkan: {{ count_item }}</h7>
+    <h7>Sesi terakhir login: {{ last_login }}</h7>
     </div>
-
-    <marquee behavior="scroll" direction="right" style= "color: blue">
-        Welcome to Euro Golf! 
-    </marquee>
-
+    
+    <div class="marquee">
+    <marquee behavior="scroll" direction="right">Welcome to Euro Golf!</marquee>
+    </div>
+      
     <script>
         async function getProducts() {
-            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+          return fetch("{% url 'main:get_product_json' %}").then((res) => res.json());
         }
+      
         async function deleteProduct(productId) {
-            try { 
-                const response = await fetch("{% url 'main:delete_product_ajax' 0 %}".replace('0', productId), {
-                    method: 'POST',
-                });
-                
-                if (response.ok) {
-                    // Produk berhasil dihapus, refresh daftar produk
-                    refreshProducts();
-                } else {
-                    // Handle kesalahan jika diperlukan
-                    console.error('Gagal menghapus produk.');
-                }
-            } catch (error) {
-                console.error('Terjadi kesalahan:', error);
+          try {
+            const response = await fetch("{% url 'main:delete_product_ajax' 0 %}".replace('0', productId), {
+              method: 'POST',
+            });
+      
+            if (response.ok) {
+              refreshProducts();
+            } else {
+              console.error('Gagal menghapus produk.');
             }
+          } catch (error) {
+            console.error('Terjadi kesalahan:', error);
+          }
         }
+      
         async function refreshProducts() {
-        document.getElementById("product_table").innerHTML = ""
-        const products = await getProducts()
-        let htmlString = `<tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Date Added</th>
-            <th>Add/Sub</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            const products = await getProducts();
+            const productCardRow = document.getElementById("product_card_row");
+            productCardRow.innerHTML = "";
 
-        </tr>`
-        products.forEach((item) => {
-            htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
-            <td>${item.fields.price}</td>
-            <td>${item.fields.amount}</td>
-            <td>${item.fields.category}</td>
-            <td>${item.fields.description}</td>
-            <td>${item.fields.date_added}</td>
-            <td>
-                <a href="add_stock/${item.pk}" style="text-decoration: none;">
-                    <button type="button" class="btn btn-sm btn-secondary">+</button>
-                </a>
-                <a href="subtract_stock/${item.pk}" style="text-decoration: none;">
-                    <button type="button" class="btn btn-sm btn-secondary">-</button>
-                </a>
-            </td>
-            <td>
-                <a href="edit-product/${item.pk}">
-                    <button type="button" class="btn btn-sm btn-primary">Edit</button>
-                </a>
-            </td>
-            <td>
-                <a onclick="deleteProduct(${item.pk})">
-                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
-                </a>
-            </td>
-        </tr>` 
-        })
-        
-        document.getElementById("product_table").innerHTML = htmlString
-        } function addProduct() {
-        fetch("{% url 'main:add_product_ajax' %}", {
-            method: "POST",
-            body: new FormData(document.querySelector('#form'))
-        }).then(refreshProducts)
+            products.forEach((item, index) => {
+                if (index % 3 === 0) {
+                    const cardRow = document.createElement("div");
+                    cardRow.classList.add("row");
+                    productCardRow.appendChild(cardRow);
+                }
 
-        document.getElementById("form").reset()
-        return false
+                const cardCol = document.createElement("div");
+                cardCol.classList.add("col-md-4"); 
+                cardCol.innerHTML = `
+                <div class="card mb-3 bg-dark text-white">
+                    <div class="card-body">
+                    <h5 class="card-title">${item.fields.name}</h5>
+                    <p class="card-text">Price: ${item.fields.price}</p>
+                    <p class="card-text">Amount: ${item.fields.amount}</p>
+                    <p class="card-text">Category: ${item.fields.category}</p>
+                    <p class="card-text">Description: ${item.fields.description}</p>
+                    <p class="card-text">Date Added: ${item.fields.date_added}</p>
+                    <a href="add_stock/${item.pk}" class="btn btn-sm btn-secondary">+</a>
+                    <a href="subtract_stock/${item.pk}" class="btn btn-sm btn-secondary">-</a>
+                    <a href="edit-product/${item.pk}" class="btn btn-sm btn-primary">Edit</a>
+                    <a onclick="deleteProduct(${item.pk})" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+                `;
+
+                const cardRow = productCardRow.lastChild;
+                cardRow.appendChild(cardCol);
+            });
         }
-        document.getElementById("button_add").onclick = addProduct
-        refreshProducts()
-    </script>
+
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            document.getElementById("form").reset()
+            return false
+        }
+      
+        document.getElementById("button_add").onclick = addProduct;
+        refreshProducts();
+      </script>
 {% endblock content %}
