@@ -1,5 +1,6 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from main.forms import ProductForm
 from django.http import HttpResponse
 from django.core import serializers
@@ -27,6 +28,25 @@ def show_main(request):
         'last_login': request.COOKIES['last_login'],
     }
     return render(request, "main.html", context)
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+
+        new_product = Product.objects.create(
+            user = request.user,
+            name = data["name"],
+            price = int(data["price"]),
+            description = data["description"]
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
 
 def pricelist_view(request):
     products = []
