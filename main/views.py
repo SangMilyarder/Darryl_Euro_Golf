@@ -110,6 +110,7 @@ def delete_product(request, id):
     
     return render(request, 'delete_product.html', {'product': product})
 
+@csrf_exempt
 def register(request):
     form = UserCreationForm()
 
