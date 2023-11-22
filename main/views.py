@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -158,6 +159,7 @@ def get_product_json(request):
     product_item = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
+@csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
         name = request.POST.get("name")
@@ -174,6 +176,7 @@ def add_product_ajax(request):
     
     return HttpResponseNotFound()
 
+@csrf_exempt
 def delete_product_ajax(request, id):
     product = get_object_or_404(Product, pk=id)
 
